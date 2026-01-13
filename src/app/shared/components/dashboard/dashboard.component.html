@@ -1,0 +1,58 @@
+<div class="container p-4">
+    <mat-card class="mb-4">
+      
+      <mat-card-content class="pt-3">
+        <div class="flex flex-column gap-3">
+          
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Pegar códigos desde Excel</mat-label>
+            <textarea 
+              matInput 
+              rows="5" 
+              [ngModel]="logic.pastedCodes()" 
+              (ngModelChange)="logic.updatePastedCodes($event)"
+              placeholder="EQ001&#10;EQ002">
+            </textarea>
+          </mat-form-field>
+  
+          <div class="flex gap-2">
+            <button 
+              mat-raised-button 
+              color="primary" 
+              (click)="logic.validateCurrentCodes()"
+              [disabled]="logic.isValidating() || logic.equipmentResource.isLoading()">
+              
+              @if (logic.isValidating()) {
+                <mat-spinner diameter="20" class="mr-2"></mat-spinner>
+              }
+              <mat-icon>filter_list</mat-icon>
+              Filtrar
+            </button>
+  
+            <button 
+              mat-stroked-button 
+              (click)="logic.clearFilter()" 
+              [disabled]="!logic.pastedCodes()">
+              Limpiar
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    @if (logic.equipmentResource.isLoading()) {
+      <div class="flex justify-center p-5">
+        <mat-spinner></mat-spinner>
+      </div>
+    } 
+    @else if (logic.equipmentResource.error()) {
+      <div class="p-4 text-center text-red-500">
+        Error al cargar datos.
+      </div>
+    } 
+    @else {
+      <app-equipment-table 
+        [data]="logic.viewData()">
+      </app-equipment-table>
+    }
+  </div>
