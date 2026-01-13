@@ -1,10 +1,3 @@
-Aquí tienes el `README.md` final y pulido, reflejando exactamente la arquitectura profesional y escalable que hemos implementado.
-
-Crea (o sobrescribe) el archivo **`README.md`** en la raíz de tu carpeta **`equipment-manager-ui`**:
-
----
-
-```markdown
 # 💻 Frontend - Equipment Manager UI
 
 Interfaz de usuario desarrollada con **Angular 21** para la gestión y validación de inventario. Este proyecto implementa una arquitectura escalable basada en **Features** y **Shared Resources**, consumiendo la API REST de `equipment-manager-api`.
